@@ -1,18 +1,31 @@
-public class S {
+public class per {
 
-	public static String removeConsecutiveDuplicates(String str) {
-        String output = "";
-        int startIndex = 0;
-        while (startIndex < str.length()) {
-            char uniqueCharacter = str.charAt(startIndex);
-            int uniqCharNextIndex = startIndex + 1;
-            while (uniqCharNextIndex < str.length() && str.charAt(uniqCharNextIndex) == uniqueCharacter) {
-                uniqCharNextIndex++;
-            }
-            output += uniqueCharacter;
-            startIndex = uniqCharNextIndex;
+	public static boolean isPermutation(String str1, String str2) {
+        int len1 = str1.length();
+        int len2 = str2.length();
+        int frequency[] = new int[255];
+        
+        if (len1 != len2) {
+            return false;
         }
-        return output;
+        
+        if (len1 == len2) {
+            for (int i = 0; i < len1; i++) {
+                int val = (int) str1.charAt(i);
+                frequency[val]++;
+            }
+            
+            for (int i = 0; i < len2; i++) {
+                int val = (int) str2.charAt(i);
+                
+                if (frequency[val] != 0) {
+                    frequency[val]--;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }
